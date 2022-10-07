@@ -15,14 +15,18 @@ Online resources consulted:
    this assignment.
 
 """
+from time import time
+
+from numpy import true_divide
+
+
 def add_one_and_multiply(a, x):
     """ Add 1 to a, then multiply by x"""
+    ### EXERCISE 1 -- 
 
-    ### EXERCISE 1 -- YOUR CODE GOES HERE
-    # Replace "None" with the correct expression
-    result = None
+    result = (1 + a) * x
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+    
     return result
 
 
@@ -38,11 +42,14 @@ def are_congruent_mod_n(a, b, n):
     Returns: True if a and b are congruent mod n, and False otherwise.
     """
 
-    ### EXERCISE 2 -- YOUR CODE GOES HERE
-    # Replace "None" with the correct expression
-    result = None
+    ### EXERCISE 2 -- 
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+    if a % n == b % n:
+        result = True 
+    elif a % n != b % n:
+        result = False 
+    
+    
     return result
 
 
@@ -59,20 +66,16 @@ def find_interest_rate(amount, principal, time):
 
     Return (float): the interest rate of the bond
     """
-    # Do not remove the three lines with assert. They help verify
-    # that amount, principal, and time all have sensible values
+    
     assert amount > 0
     assert principal > 0
     assert time > 0
 
-    ### EXERCISE 3 -- YOUR CODE GOES HERE
-    # You may define local variables here for use in
-    # the result expression.
+    ### EXERCISE 3 -- 
 
-    # Replace "None" with an appropriate expression
-    result = None
+    result = ((amount - principal) * 100)/ (principal * time)
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+    
     return result
 
 #######
@@ -96,16 +99,21 @@ def is_urban_county(population, area):
     Returns (boolean): Returns True, if the county qualfies as urban,
         False otherwise.
     """
-    # Do not remove the next two lines.  These assertions help verify
-    # that the population and area values are sensible.
+    
     assert population >= 0
     assert area > 0
 
-    ### EXERCISE 4 -- YOUR CODE GOES HERE
-    # Replace "None" with the correct expression
-    result = None
+    
+    ### EXERCISE 4 -- 
+    if (population >= URBAN_POPULATION_THRESHOLD and area >= 
+    URBAN_DENSITY_THRESHOLD):
+        result = True
+    if (population >= RURAL_POPULATION_THRESHOLD and area >= 
+    RURAL_DENSITY_THRESHOLD):
+        result = False
+    else:
+        result = False
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
     return result
 
 
@@ -125,17 +133,26 @@ def is_other_county(population, area):
         False otherwise.
 
     """
-    # Do not remove the next two lines.  These assertions help verify
-    # that the population and area values are sensible.
+    
     assert population >= 0
     assert area > 0
 
-    result = None
 
-    ### EXERCISE 5 -- YOUR CODE GOES HERE
-    # Add code to set result to the correct value here.
+    ### EXERCISE 5 -- 
+    
+    if population != URBAN_POPULATION_THRESHOLD: 
+        result = True
+    if area != URBAN_DENSITY_THRESHOLD:
+        result = True
+    elif population !=  RURAL_POPULATION_THRESHOLD: 
+        result = True
+    elif area != RURAL_DENSITY_THRESHOLD:
+        result = True
+    else: 
+        result = False
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+
+
     return result
 
 
@@ -156,17 +173,18 @@ def alt_is_other_county(population, area):
         False otherwise.
 
     """
-    # Do not remove the next two lines.  These assertions help verify
-    # that the population and area values are sensible.
+    
     assert population >= 0
     assert area > 0
 
-    ### EXERCISE 6 -- YOUR CODE GOES HERE
-    # Replace "None" with an appropriate expression.
+    ### EXERCISE 6 -- 
 
-    result = None
+    result = True == (population < 50000 and area > 2500 or population 
+    < 1000 and area > 500)
+    result = False == (population < 50000 and area > 2500 or population 
+    < 1000 and area > 500)
 
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+    
     return result
 
 
@@ -181,18 +199,26 @@ def label_county(population, area):
 
     Returns (string): "rural", "urban", or "other"
     """
-    # Do not remove the next two lines.  These assertions help verify
-    # that the population and area values are sensible.
+    
     assert population >= 0
     assert area > 0
 
-    result = None
+    result = ("urban", "rural", "other")
 
-    ### EXERCISE 7 -- YOUR CODE GOES HERE
-    # Add code to set result to "rural", "urban", or "other"
-    # as appropriate
-
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+    ### EXERCISE 7 -- 
+    
+    if (population >= URBAN_POPULATION_THRESHOLD and area 
+        >= URBAN_DENSITY_THRESHOLD):
+        result ("urban")
+    elif (population <=  RURAL_POPULATION_THRESHOLD and area <= 
+        RURAL_DENSITY_THRESHOLD):
+        result ("rural")
+    elif (population < URBAN_POPULATION_THRESHOLD or population > 
+        RURAL_POPULATION_THRESHOLD and area < URBAN_DENSITY_THRESHOLD or 
+        area > RURAL_DENSITY_THRESHOLD):
+        result ("other")
+        
+    
     return result
 
 
@@ -204,15 +230,19 @@ def compute_fee(length, weight):
     determined by their length: 40 ft containers pay $300,
     20 ft containers pay $150, and 10ft containers pay $75.
     """
-    # Do not remove the next two lines.  They help verify that
-    # weight and length have values appropriate for the function.
+    
     assert weight > 0
     assert length in [10, 20, 40]
 
-    fee = None
+    ### EXERCISE 8 -- 
+    if weight > 3000:
+        fee = 300
+    elif weight < 3000 and length == 40 :
+        fee = 300
+    elif weight < 3000 and length == 20 :
+        fee = 150
+    elif weight < 300 and length== 10:
+        fee = 75
 
-    ### EXERCISE 8 -- YOUR CODE GOES HERE
-    # Add code to set fee to an appropriate value here.
-
-    ### DO NOT MODIFY THE FOLLOWING LINE!
+  
     return fee
